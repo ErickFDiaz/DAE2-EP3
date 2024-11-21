@@ -68,10 +68,9 @@
                     </div>
                     <div class="mb-3">
                         <label for="distrito" class="form-label">Distrito:</label>
-                        <select class="form-select" id="distrito" th:field="*{distrito.codigo}" required>
-                            <option value="">Seleccione un distrito</option>
-                            <option th:each="d : ${distritos}" th:value="${d.codigo}" th:text="${d.nombre}"
-                                th:selected="${d.codigo == cliente.distrito.codigo}"></option>
+                        <select class="form-select" id="distrito" th:field="*{distrito}" required>
+                            <option value="0">Seleccione un distrito</option>
+                            <option th:each="d : ${distritos}" th:value="${d.codigo}" th:text="${d.nombre}"></option>
                         </select>
                     </div>
                     <div class="mb-3 form-check">

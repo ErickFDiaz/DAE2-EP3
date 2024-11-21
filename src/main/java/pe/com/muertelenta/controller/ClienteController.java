@@ -77,14 +77,6 @@ public class ClienteController {
     // Acciones
     @PostMapping("/cliente/registrar")
     public String registrarCliente(@ModelAttribute("cliente") ClienteEntity cliente) {
-        // Cargar distrito desde la base de datos
-        DistritoEntity distrito = distritoServicio.findById(cliente.getDistrito().getCodigo());
-        if (distrito == null) {
-            // Manejar error
-            return "cliente/registrar_cliente";
-        }
-        cliente.setDistrito(distrito);
-
         servicio.add(cliente);
         return "redirect:/cliente/listar";
     }
@@ -92,15 +84,6 @@ public class ClienteController {
     @PostMapping("/cliente/actualizar/{id}")
     public String actualizarCliente(@PathVariable Long id, @ModelAttribute("cliente") ClienteEntity cliente) {
         cliente.setCodigo(id);
-
-        // Cargar distrito desde la base de datos
-        DistritoEntity distrito = distritoServicio.findById(cliente.getDistrito().getCodigo());
-        if (distrito == null) {
-            // Manejar error
-            return "cliente/actualizar_cliente";
-        }
-        cliente.setDistrito(distrito);
-
         servicio.update(cliente);
         return "redirect:/cliente/listar";
     }
