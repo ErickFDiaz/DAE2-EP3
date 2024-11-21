@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Listado de Tipo de Plato - Restaurante Muerte Lenta</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- inicio tarjeta -->
+      <div class="card">
+        <div class="card-header text-center">
+          <h1>Listado de Tipos de Platos</h1>
+        </div>
+        <div class="card-body">
+          <!-- inicio de la tabla -->
+          <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered">
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col">Codigo</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Actualizar</th>
+                  <th scope="col">Eliminar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- esta es la seccion que debe de cargar desde la base de datos por consiguiente se debe de repetir n veces -->
+                <!-- th:each hace un for each a la variable que viene del controlador -->
+                <tr th:each="tp : ${listatipoplatos}">
+                  <th scope="row" th:text="${tp.codigo}"></th>
+                  <td th:text="${tp.nombre}"></td>
+                  <td th:text="${tp.estado}? 'Habilitado':'Deshabilitado'">
+                    Habilitado
+                  </td>
+                  <td>
+                    <a
+                      th:href="@{/tipoplato/actualiza/{id}(id=${tp.codigo})}"
+                      class="btn btn-success"
+                      >Seleccionar</a
+                    >
+                  </td>
+                  <td>
+                    <a
+                      th:href="@{/tipoplato/eliminar/{id}(id=${tp.codigo})}"
+                      class="btn btn-danger"
+                      >Seleccionar</a
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- fin tabla -->
+        </div>
+        <div class="card-footer">
+          <a th:href="@{/tipoplato/registro}" class="btn btn-primary"
+            >Nuevo Tipo de Plato</a
+          >
+          <a th:href="@{/tipoplato/habilita}" class="btn btn-warning"
+          >Habilita Tipo de Plato</a
+        >
+          <a th:href="@{/menuprincipal}" class="btn btn-secondary"
+            >Regresar al Menu Principal</a
+          >
+        </div>
+      </div>
+      <!-- fin tarjeta -->
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
